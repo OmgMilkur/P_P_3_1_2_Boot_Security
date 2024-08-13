@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>User</title>
+    <style>
+        .left {
+            float: left;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #8C959D;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h2 sec:authorize="hasRole('ROLE_USER')">Welcome!</h2>
+    <div sec:authorize="hasRole('ROLE_USER')">The page for the user role</div>
+    <div align="left" th:object="${user}">
+        <b>ID:</b> <span th:text="${user.getId()}"></span>
+        <br/>
+        <b>Username:</b> <span th:text="${user.getUsername()}"></span>
+        <br/>
+        <b>Year of birth:</b> <span th:text="${user.getYearOfBirth()}"></span>
+        <br/>
+        <b>Password:</b> <span sec:authorize="hasRole('ROLE_USER')" th:text="${user.getPassword()}"></span>
+        <br/>
+        <div class="left"><a th:href="@{/user/edit}" class="btn">Edit</a></div>
+        <div class="left">
+            <form th:method="DELETE" th:action="@{/user/delete}">
+                <button type="submit" class="btn">Delete</button>
+            </form>
+        </div>
+        <div class="left">
+            <a href="/logout" class="btn">Sign out</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

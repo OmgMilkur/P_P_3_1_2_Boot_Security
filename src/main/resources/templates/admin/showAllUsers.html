@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <style>
+        .left {
+            padding-left: 5px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<table class="left" sec:authorize="hasRole('ROLE_ADMIN')" border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Year Of Birth</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getId()}">ID</td>
+        <td th:text="${user.getUsername()}">Name</td>
+        <td th:text="${user.getYearOfBirth()}">Surname</td>
+        <td>
+            <button
+                    class="left"
+                    th:data-url="@{/admin/edit(id=${user.getId()})}"
+                    onclick="window.open(this.getAttribute('data-url'))">Edit
+            </button>
+
+            <form class="left" th:method="DELETE" th:action="@{/admin/delete(id=${user.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<button
+        class="left"
+        th:data-url="@{/logout}"
+        onclick="window.open(this.getAttribute('data-url'))">Log out
+</button>
+</body>
+</html>

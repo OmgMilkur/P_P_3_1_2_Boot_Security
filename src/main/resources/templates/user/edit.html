@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+    <style>
+        .left {
+            float: left;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #8C959D;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/user/update}" th:object="${user}">
+    <label for="name">Enter username: </label>
+    <input type="text" th:field="*{username}" id="name"/>
+    <br>
+    <label for="year">Enter year of birth: </label>
+    <input type="text" th:field="*{yearOfBirth}" id="year"/>
+    <br>
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br>
+    <div class="left">
+        <button class="btn" type="submit">Update</button>
+    </div>
+    <div class="left">
+        <a href="/logout" class="btn">Sign out</a>
+    </div>
+</form>
+</body>
+</html>

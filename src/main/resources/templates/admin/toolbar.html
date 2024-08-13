@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toolbar</title>
+    <style>
+        .btn {
+            display: inline-block;
+            background: #8C959D;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div sec:authorize="hasRole('ROLE_ADMIN')" align="center">
+    <a href="/admin/users" class="btn">Show all users</a>
+    <a href="/logout" class="btn">Sign out</a>
+</div>
+</body>
+</html>
