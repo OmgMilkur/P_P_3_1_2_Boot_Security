@@ -30,7 +30,7 @@
     <input type="text" th:field="*{yearOfBirth}" id="year"/>
     <br/>
     <label for="password">Enter password: </label>
-    <input th:if="${user.getUsername()} == ${#authentication.getName()}" type="text" th:field="*{password}"
+    <input type="password" readonly="readonly" th:field="*{password}"
            id="password"/>
     <br/>
     <div class="left">

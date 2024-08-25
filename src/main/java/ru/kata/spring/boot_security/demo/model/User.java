@@ -20,11 +20,17 @@ public class User implements UserDetails {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
     public User() {
 
+    }
+
+    public User(String username, String password, String yearOfBirth) {
+        this.username = username;
+        this.password = password;
+        this.yearOfBirth = yearOfBirth;
     }
 
     @Override
