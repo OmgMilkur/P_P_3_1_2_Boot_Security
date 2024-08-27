@@ -76,8 +76,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(Long userId, User user) {
         User userFromDB = findById(userId);
+        System.out.println(user.getPassword());
+        System.out.println(userFromDB.getPassword());
+
+        if (userFromDB.getPassword().equals(user.getPassword())) {
+            userFromDB.setPassword(user.getPassword());
+        } else {
+            userFromDB.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
         userFromDB.setUsername(user.getUsername());
-        userFromDB.setPassword(passwordEncoder.encode(user.getPassword()));
         userFromDB.setYearOfBirth(user.getYearOfBirth());
 
         userRepository.save(userFromDB);
